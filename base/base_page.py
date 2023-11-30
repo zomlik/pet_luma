@@ -23,5 +23,5 @@ class BasePage:
     def is_clickable(self, locator: tuple, timeout: int = TIMEOUT):
         return wait(self.browser, timeout).until(EC.element_to_be_clickable(locator))
 
-    def get_attribute(self, attribute: str):
-        return self.browser.get_attribute(attribute)
+    def find(self, locator: tuple):
+        return self.browser.find_element(*locator)
