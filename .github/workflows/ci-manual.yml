@@ -5,7 +5,7 @@ on:
 
 jobs:
   bild:
-    runs-on: ubunty-lastest
+    runs-on: ubuntu-lastest
 
     steps:
     - name: Checkout
