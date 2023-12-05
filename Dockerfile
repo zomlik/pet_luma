@@ -69,4 +69,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Запускаем проект
-CMD ["pytest", "-n4", "-s", "-v"]
+CMD ["pytest", "-s", "-v"]
