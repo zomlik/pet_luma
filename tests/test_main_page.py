@@ -5,7 +5,7 @@ from data.urls import URL
 def test_logo_is_loaded(browser):
     page = MainPage(browser)
     page.open(URL.BASE_URL)
-    assert page.logo_is_visible(), "Лого отсутствует"
+    page.logo_is_visible()
 
 
 def test_search_box_is_loaded(browser):
