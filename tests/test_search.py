@@ -23,3 +23,13 @@ def test_search_for_3_simbols(browser):
     page.send_enter()
     with allure.step("На странице с результатами поиска присутствуют товары"):
         assert len(ItemLocators.MINI_ITEMS) > 0
+
+
+@allure.title("PL-10 Поиск несуществующего товара")
+def test_search_for_non_exist_product(browser):
+    page = Search(browser)
+    page.open(URL.BASE_URL)
+    page.send_search_field("mom")
+    page.send_enter()
+    with allure.step("Отображается сообщение 'Your search returned no results'"):
+        assert "Your search returned no results." in page.search_results_message()
