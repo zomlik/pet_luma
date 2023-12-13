@@ -30,7 +30,7 @@ def test_promo_banners(browser, banner_locator):
         page.is_visible(banner_locator)
 
 
-@allure.step("PL-15 На странице присутствуют часто покупаемые товары")
+@allure.title("PL-15 На странице присутствуют часто покупаемые товары")
 def test_hot_sellar(browser):
     page = MainPage(browser)
     page.open(URL.BASE_URL)
@@ -38,3 +38,13 @@ def test_hot_sellar(browser):
         assert page.len(MainPageLocators.HOT_SELLAR_ITEM) == 6
     with allure.step("Проверка заголовка"):
         assert page.get_text(MainPageLocators.HOT_SELLAR_TEXT) == "Hot Sellers"
+
+
+@allure.title("PL-16 Корзина")
+def test_cart_is_present(browser):
+    page = MainPage(browser)
+    page.open(URL.BASE_URL)
+    page.click_cart()
+    with allure.step("Нажатие на пустую корзину"):
+        assert page.cart_empty_message() == "You have no items in your shopping cart."
+

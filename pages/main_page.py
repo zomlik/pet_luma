@@ -24,3 +24,9 @@ class MainPage(BasePage):
     def search_box_button_is_visible(self):
         return self.is_visible(MainPageLocators.SEARCH_BOX_BUTTON)
 
+    @allure.step("Клик на иконку корзины")
+    def click_cart(self):
+        return self.is_clickable(MainPageLocators.CATR_ICON).click()
+
+    def cart_empty_message(self):
+        return self.get_text(MainPageLocators.CART_EMPTY_MESSAGE)
