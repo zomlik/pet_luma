@@ -2,6 +2,7 @@ import allure
 from base.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
 from locators.search_results_locatators import SearchResultsLocators
+from locators.item_locators import ItemLocators
 
 
 class Search(BasePage):
@@ -14,3 +15,11 @@ class Search(BasePage):
 
     def search_results_message(self):
         return self.get_text(SearchResultsLocators.SEARCH_MESSAGE_ERROR)
+
+    def find_elem_by_name_in_results(self, name: str):
+        elems = self.all_elems_is_visibles(ItemLocators.MINI_ITEMS_NAME)
+        for item in elems:
+            if item.text == name:
+                return True
+            else:
+                return False
