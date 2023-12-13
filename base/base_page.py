@@ -1,4 +1,5 @@
 import allure
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as wait
@@ -39,3 +40,7 @@ class BasePage:
 
     def find(self, locator: tuple) -> WebElement:
         return self.browser.find_element(*locator)
+
+    @allure.step("Нажатие клавиши Enter")
+    def send_enter(self):
+        return ActionChains(self.browser).send_keys(Keys.ENTER).perform()
