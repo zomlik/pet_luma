@@ -19,7 +19,7 @@ class Search(BasePage):
     def find_elem_by_name_in_results(self, name: str):
         elems = self.all_elems_is_visibles(ItemLocators.MINI_ITEMS_NAME)
         for item in elems:
-            if item.text == name:
+            if name in item.text:
                 return True
             else:
                 return False
