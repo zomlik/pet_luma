@@ -39,7 +39,7 @@ class TestMainPage:
             assert page.get_text(MainPageLocators.HOT_SELLAR_TEXT) == "Hot Sellers"
             
     @allure.title("PL-16 Корзина")
-    def test_cart_is_present(browser):
+    def test_cart_is_present(self, browser):
         page = MainPage(browser)
         page.open(URL.BASE_URL)
         page.click_cart()

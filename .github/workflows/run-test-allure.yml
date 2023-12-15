@@ -1,4 +1,4 @@
-name: Autotested with allure
+name: Autotests with allure
 on:
   workflow_dispatch:
     inputs:
