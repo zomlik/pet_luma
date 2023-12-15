@@ -3,14 +3,6 @@ on:
   workflow_dispatch:
     inputs:
       deployment_target:
-        description: targets
-        required: true
-        default:
-        type: choice
-        options:
-          - all tests
-          - main page
-          - search
 
 jobs:
   tests:
@@ -23,18 +15,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: Install Chrome
-        run: sudo apt-get install google-chrome-stable
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: All tests
-        if: "github.event.inputs.deployment_target == 'all tests'"
         run: pytest
-      - name: Main paga tests
-        if: "github.event.inputs.deployment_target == 'main page'"
-        run: pytest tests/test_main_page.py
-      - name: Search tests
-        if: "github.event.inputs.deployment_target == 'search'"
-        run: pytest tests/search.py
 
 
