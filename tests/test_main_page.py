@@ -37,3 +37,11 @@ class TestMainPage:
             assert page.len(MainPageLocators.HOT_SELLAR_ITEM) == 6
         with allure.step("Проверка заголовка"):
             assert page.get_text(MainPageLocators.HOT_SELLAR_TEXT) == "Hot Sellers"
+            
+    @allure.title("PL-16 Корзина")
+    def test_cart_is_present(browser):
+        page = MainPage(browser)
+        page.open(URL.BASE_URL)
+        page.click_cart()
+        with allure.step("Нажатие на пустую корзину"):
+            assert page.cart_empty_message() == "You have no items in your shopping cart."
