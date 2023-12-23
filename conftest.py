@@ -2,6 +2,8 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+pytest_plugins = ["fixtures.account"]
+
 
 @pytest.fixture()
 def chrome_options():

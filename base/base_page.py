@@ -19,7 +19,7 @@ class BasePage:
                       WebElement, если элемент видим, или вызывает исключение TimeoutException, если
                       элемент не появилс
         is_clickable(): Ожидает, что элемент, заданный локатором, станет кликабельным в течение указанного
-                        времени.Если элемент становится кликабельным, функция возвращает элемент, иначе
+                        времени. Если элемент становится кликабельным, функция возвращает элемент, иначе
                         вызывает исключение TimeoutException.
         all_elems_is_visibles():
         send_enter():
@@ -32,10 +32,10 @@ class BasePage:
         self.browser = browser
 
     @allure.step("Открытие cтраницы")
-    def open(self, url: str):
+    def open(self, url: str) -> None:
         return self.browser.get(url)
 
-    def current_url(self):
+    def current_url(self) -> None:
         return self.browser.current_url
 
     def get_text(self, locator: tuple) -> str:
@@ -45,17 +45,26 @@ class BasePage:
         return len(self.all_elems_is_visibles(locator))
 
     def is_visible(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
-        return wait(self.browser, timeout).until(EC.visibility_of_element_located(locator))
+        return wait(self.browser, timeout).until(EC.visibility_of_element_located(locator),
+                                                 message=f"Can't find element by {locator}")
 
     def is_clickable(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
-        return wait(self.browser, timeout).until(EC.element_to_be_clickable(locator))
+        return wait(self.browser, timeout).until(EC.element_to_be_clickable(locator),
+                                                 message=f"Can't find element by {locator}")
 
     def all_elems_is_visibles(self, locator: tuple, timeout: int = TIMEOUT) -> list[WebElement]:
-        return wait(self.browser, timeout).until(EC.visibility_of_all_elements_located(locator))
+        return wait(self.browser, timeout).until(EC.visibility_of_all_elements_located(locator),
+                                                 message=f"Can't find elements by {locator}")
 
     def find(self, locator: tuple) -> WebElement:
         return self.browser.find_element(*locator)
 
+    def hold_mouse_on_element(self, elem) -> None:
+        if type(elem) is WebElement:
+            return ActionChains(self.browser).move_to_element(elem).perform()
+        else:
+            return ActionChains(self.browser).move_to_element(self.is_visible(elem)).perform()
+
     @allure.step("Нажатие клавиши Enter")
-    def send_enter(self):
+    def send_enter(self) -> None:
         return ActionChains(self.browser).send_keys(Keys.ENTER).perform()
