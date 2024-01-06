@@ -14,10 +14,15 @@ class MiniItem(BasePage):
         return self.is_clickable(ItemLocators.MINI_ITEMS_ADD_TO_CART).click()
 
     @allure.step("Выбор элемента и добовление его в список желаний")
-    def choose_item_and_add_to_wish_list(self,num_item: int = 0):
+    def choose_item_and_add_to_wish_list(self, num_item: int = 0):
         elems = self.all_elems_is_visibles(ItemLocators.MINI_ITEMS)
         self.hold_mouse_on_element(elems[num_item])
         return self.is_clickable(ItemLocators.MINI_ITEMS_ADD_TO_WISH_LIST).click()
+
+    @allure.step("Выбор оранжевого цвета")
+    def choose_items_color_orange(self, num_item: int = 0):
+        elems = self.all_elems_is_visibles(ItemLocators.MINI_ITEMS_COLOR_ORANGE)
+        return elems[num_item].click()
 
     @allure.step("Получение сообщение на странице товара")
     def get_message_item_page(self):
