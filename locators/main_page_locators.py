@@ -7,6 +7,7 @@ class MainPageLocators:
     SEARCH_BOX_BUTTON = (By.CSS_SELECTOR, ".action.search")
     CATR_ICON = (By.CSS_SELECTOR, ".action.showcart")
     CART_EMPTY_MESSAGE = (By.CSS_SELECTOR, ".subtitle.empty")
+    SIGN_IN = ()
 
     BANNER_MAIN = (By.CSS_SELECTOR, ".block-promo.home-main")
     BANNER_PANTS = (By.CSS_SELECTOR, ".block-promo.home-pants")
