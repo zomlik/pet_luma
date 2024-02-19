@@ -26,5 +26,5 @@ class CreateAccount(BasePage):
 
     @allure.step("Клик по кнопке Create An Account")
     def click_button(self):
-        return self.is_visible(CreateAccountLocators.CREATE_ACCOUNT_BUTTON).click()
+        return self.is_clickable(CreateAccountLocators.CREATE_ACCOUNT_BUTTON).click()
 
