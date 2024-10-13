@@ -5,7 +5,7 @@ class MainPageLocators:
     LOGO = (By.CSS_SELECTOR, ".logo")
     SEARCH_BOX = (By.CSS_SELECTOR, "#search")
     SEARCH_BOX_BUTTON = (By.CSS_SELECTOR, ".action.search")
-    CATR_ICON = (By.CSS_SELECTOR, ".action.showcart")
+    CART_ICON = (By.CSS_SELECTOR, ".action.showcart")
     CART_EMPTY_MESSAGE = (By.CSS_SELECTOR, ".subtitle.empty")
     SIGN_IN = ()
 
@@ -18,6 +18,5 @@ class MainPageLocators:
     LIST_OF_BANNERS = [BANNER_MAIN, BANNER_PANTS, BANNER_T_SHIRTS,
                        BANNER_ERIN, BANNER_PERFORMANCE, BANNER_ECO]
 
-    HOT_SELLAR_TEXT = (By.CSS_SELECTOR, ".content-heading h2")
-    HOT_SELLAR_ITEM = (By.CSS_SELECTOR, ".product-item")
-
+    HOT_SELLER_TEXT = (By.CSS_SELECTOR, ".content-heading h2")
+    HOT_SELLER_ITEM = (By.CSS_SELECTOR, ".product-item")

@@ -1,4 +1,5 @@
 import allure
+
 from base.base_page import BasePage
 from locators.sing_in_locators import SingInLocators
 

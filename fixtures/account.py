@@ -1,6 +1,7 @@
 import pytest
-from locators.login_page_locators import LoginPageLocator
+
 from data.urls import URL
+from locators.login_page_locators import LoginPageLocator
 
 
 @pytest.fixture()

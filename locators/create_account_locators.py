@@ -15,5 +15,4 @@ class CreateAccountLocators:
     PASSWORD_ERROR = (By.CSS_SELECTOR, "#password-error")
     CONFIRM_PASSWORD_ERROR = (By.CSS_SELECTOR, "#password-confirmation-error")
 
-    H1_MY_ACCOUNT = (By.CSS_SELECTOR, ".base")
-
+    MESSAGE = (By.CSS_SELECTOR, ".messages")

@@ -1,8 +1,9 @@
 import allure
+
 from base.base_page import BasePage
+from locators.item_locators import ItemLocators
 from locators.main_page_locators import MainPageLocators
 from locators.search_results_locatators import SearchResultsLocators
-from locators.item_locators import ItemLocators
 
 
 class Search(BasePage):

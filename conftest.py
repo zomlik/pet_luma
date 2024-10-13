@@ -1,14 +1,16 @@
 import pytest
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+load_dotenv()
 pytest_plugins = ["fixtures.account"]
 
 
 @pytest.fixture()
 def chrome_options():
     options = Options()
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--ignore-certificate-errors")
     return options

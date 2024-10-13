@@ -1,7 +1,8 @@
 import allure
-from pages.search_page import Search
-from locators.item_locators import ItemLocators
+
 from data.urls import URL
+from locators.item_locators import ItemLocators
+from pages.search_page import Search
 
 
 @allure.suite("Поиск")

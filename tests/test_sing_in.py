@@ -1,8 +1,9 @@
 import allure
-from pages.sing_in import SingIn
-from data.urls import URL
+
 from data.fake_data import FakeData
 from data.test_data import TestsData
+from data.urls import URL
+from pages.sing_in import SingIn
 
 
 @allure.suite("Авторизация")
@@ -50,4 +51,3 @@ class TestSingIn(FakeData):
         page.click_sing_in_button()
         with allure.step("Ошибка This is a required field"):
             assert page.pass_errors_messages() == "This is a required field."
-

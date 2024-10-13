@@ -15,9 +15,9 @@ class BasePage:
         current_url(): Возвращает текущий URL страницы
         get_text():
         len(): Возвращает количество элементов в списке
-        is_visible(): Ожидает видимость элемента, заданного локатором, в течение указанного времени. Возвращает
-                      WebElement, если элемент видим, или вызывает исключение TimeoutException, если
-                      элемент не появилс
+        is_visible(): Ожидает видимость элемента, заданного локатором, в течение указанного времени.
+            Возвращает WebElement, если элемент видим, или вызывает исключение TimeoutException, если
+                     элемент не появилс
         is_clickable(): Ожидает, что элемент, заданный локатором, станет кликабельным в течение указанного
                         времени. Если элемент становится кликабельным, функция возвращает элемент, иначе
                         вызывает исключение TimeoutException.
@@ -52,7 +52,8 @@ class BasePage:
         return wait(self.browser, timeout).until(EC.element_to_be_clickable(locator),
                                                  message=f"Can't find element by {locator}")
 
-    def all_elems_is_visibles(self, locator: tuple, timeout: int = TIMEOUT) -> list[WebElement]:
+    def all_elems_is_visibles(self, locator: tuple,
+                              timeout: int = TIMEOUT) -> list[WebElement]:
         return wait(self.browser, timeout).until(EC.visibility_of_all_elements_located(locator),
                                                  message=f"Can't find elements by {locator}")
 

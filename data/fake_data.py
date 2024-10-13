@@ -1,17 +1,17 @@
-from faker import Faker
+from mimesis import Generic, Locale
 
 
 class FakeData:
-    fake = Faker("en_US")
+    _generate = Generic(Locale.EN)
 
-    @property
-    def first_name(self):
-        return self.fake.first_name
+    @classmethod
+    def first_name(cls):
+        return cls._generate.person.first_name()
 
-    @property
-    def last_name(self):
-        return self.fake.last_name
+    @classmethod
+    def last_name(cls):
+        return cls._generate.person.last_name()
 
-    @property
-    def email(self):
-        return self.fake.email
+    @classmethod
+    def email(cls):
+        return cls._generate.person.email()
