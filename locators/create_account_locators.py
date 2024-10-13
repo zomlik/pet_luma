@@ -13,6 +13,7 @@ class CreateAccountLocators:
     LAST_NAME_ERROR = (By.CSS_SELECTOR, "#lastname-error")
     EMAIL_ERROR = (By.CSS_SELECTOR, "#email_address-error")
     PASSWORD_ERROR = (By.CSS_SELECTOR, "#password-error")
+    Password_STRENGTH = (By.CSS_SELECTOR, "#password-strength-meter-label")
     CONFIRM_PASSWORD_ERROR = (By.CSS_SELECTOR, "#password-confirmation-error")
 
     MESSAGE = (By.CSS_SELECTOR, ".messages")
