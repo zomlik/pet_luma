@@ -22,4 +22,4 @@ class CreateAccount(BasePage):
         with allure.step("Fill confirm password field"):
             self.is_visible(CreateAccountLocators.CONFIRM_PASSWORD).send_keys(confirmation_password)
         with allure.step("Click on Create an account button"):
-            self.is_clickable(CreateAccountLocators.CREATE_ACCOUNT_BUTTON)
+            self.is_clickable(CreateAccountLocators.CREATE_ACCOUNT_BUTTON).click()
