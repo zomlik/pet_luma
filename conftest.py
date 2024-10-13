@@ -6,11 +6,16 @@ from selenium.webdriver.chrome.options import Options
 load_dotenv()
 pytest_plugins = ["fixtures.account"]
 
+def pytest_addoption(parser):
+    """Пользовательские опции командной строки"""
+    parser.addoption("--ci", action='store')
 
 @pytest.fixture()
-def chrome_options():
+def chrome_options(request):
     options = Options()
-    options.add_argument("--headless")
+    if request.config.getoption("ci"):
+        options.add_argument("--headless")
+        options.add_argument("--window-size=1920,1080")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--ignore-certificate-errors")
     return options

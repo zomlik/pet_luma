@@ -6,11 +6,11 @@ from locators.create_account_locators import CreateAccountLocators
 
 class CreateAccount(BasePage):
     def create_account(self,
-                       first_name: str = None,
-                       last_name: str = None,
-                       email: str = None,
-                       password: str = None,
-                       confirmation_password: str = None):
+                       first_name: str,
+                       last_name: str,
+                       email: str,
+                       password: str,
+                       confirmation_password: str):
         with allure.step("Fill first name field"):
             self.is_visible(CreateAccountLocators.FIRST_NAME).send_keys(first_name)
         with allure.step("Fill last name field"):

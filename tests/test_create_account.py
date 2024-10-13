@@ -26,7 +26,7 @@ class TestCreateAccount:
     def test_create_account_empty_first_name_field(self, browser):
         page = CreateAccount(browser)
         page.open(URL.CREATE_ACCOUNT)
-        page.create_account(first_name=None,
+        page.create_account(first_name="",
                             last_name=FakeData.last_name(),
                             email=FakeData.email(),
                             password="123456",
@@ -39,7 +39,7 @@ class TestCreateAccount:
         page = CreateAccount(browser)
         page.open(URL.CREATE_ACCOUNT)
         page.create_account(first_name=FakeData.first_name(),
-                            last_name=None,
+                            last_name="",
                             email=FakeData.email(),
                             password="123456789",
                             confirmation_password="123456789")
@@ -52,7 +52,7 @@ class TestCreateAccount:
         page.open(URL.CREATE_ACCOUNT)
         page.create_account(first_name=FakeData.first_name(),
                             last_name=FakeData.last_name(),
-                            email=None,
+                            email="",
                             password="123456789",
                             confirmation_password="123456789")
         with allure.step("Error: This is a required field"):
@@ -78,7 +78,7 @@ class TestCreateAccount:
         page.create_account(first_name=FakeData.first_name(),
                             last_name=FakeData.last_name(),
                             email=FakeData.email(),
-                            password=None,
+                            password="",
                             confirmation_password="123456789")
         with allure.step("Error: This is a required field"):
             assert page.get_text(CreateAccountLocators.FIRST_NAME_ERROR) == "This is a required field."
@@ -91,7 +91,7 @@ class TestCreateAccount:
                             last_name=FakeData.last_name(),
                             email=FakeData.email(),
                             password="123456789",
-                            confirmation_password=None)
+                            confirmation_password="")
         with allure.step("Error: This is a required field"):
             assert page.get_text(CreateAccountLocators.FIRST_NAME_ERROR) == "This is a required field."
 
@@ -125,7 +125,11 @@ class TestCreateAccount:
     def test_create_account_empty_confirmation_password_name_field(self, browser):
         page = CreateAccount(browser)
         page.open(URL.CREATE_ACCOUNT)
-        page.create_account(password="123456789")
+        page.create_account(first_name="",
+                            last_name="",
+                            email="",
+                            password="123456789",
+                            confirmation_password="")
         with allure.step("Error: This is a required field"):
             assert page.get_text(CreateAccountLocators.Password_STRENGTH) == "Weak"
             assert page.get_text(CreateAccountLocators.PASSWORD_ERROR) == ("Minimum of different classes"
