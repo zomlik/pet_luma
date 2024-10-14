@@ -26,9 +26,6 @@ jobs:
       - name: Run tests
         run: pytest --ci=true --alluredir allure-results
 
-      - name: Test ls
-        run: ls
-
       - name: Load test report history
         uses: actions/checkout@v3
         if: always()
@@ -43,7 +40,7 @@ jobs:
         with:
           gh_pages: gh-pages
           allure_history: allure-history
-          allure_results: build/allure-results
+          allure_results: allure-results
 
       - name: Publish test report
         uses: peaceiris/actions-gh-pages@v3
