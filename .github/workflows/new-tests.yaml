@@ -24,7 +24,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest --ci=true
+        run: pytest --ci=true --alluredir allure-results
 
       - name: Load test report history
         uses: actions/checkout@v3
