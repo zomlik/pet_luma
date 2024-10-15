@@ -23,3 +23,7 @@ class CreateAccount(BasePage):
             self.is_visible(CreateAccountLocators.CONFIRM_PASSWORD).send_keys(confirmation_password)
         with allure.step("Click on Create an account button"):
             self.is_clickable(CreateAccountLocators.CREATE_ACCOUNT_BUTTON).click()
+
+    @staticmethod
+    def error_required():
+        return "This is a required field."

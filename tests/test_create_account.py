@@ -18,7 +18,7 @@ class TestCreateAccount:
                             email=FakeData.email(),
                             password="123456789!Qs@",
                             confirmation_password="123456789!Qs@")
-        with allure.step("Успешная регистрация"):
+        with allure.step("Successful registration"):
             assert page.current_url() == URL.MY_ACCOUNT
             assert page.get_text(CreateAccountLocators.MESSAGE) == "Thank you for registering with Main Website Store."
 
@@ -34,7 +34,7 @@ class TestCreateAccount:
         with allure.step("Error: This is a required field"):
             assert page.get_text(CreateAccountLocators.FIRST_NAME_ERROR) == "This is a required field."
 
-    @allure.step("Create an account with empty last name field")
+    @allure.title("Create an account with empty last name field")
     def test_create_account_empty_last_name_field(self, browser):
         page = CreateAccount(browser)
         page.open(URL.CREATE_ACCOUNT)
@@ -46,7 +46,7 @@ class TestCreateAccount:
         with allure.step("Error: This is a required field"):
             assert page.get_text(CreateAccountLocators.LAST_NAME_ERROR) == "This is a required field."
 
-    @allure.step("Create an account with empty email field")
+    @allure.title("Create an account with empty email field")
     def test_create_account_empty_email_name_field(self, browser):
         page = CreateAccount(browser)
         page.open(URL.CREATE_ACCOUNT)
@@ -58,7 +58,7 @@ class TestCreateAccount:
         with allure.step("Error: This is a required field"):
             assert page.get_text(CreateAccountLocators.EMAIL_ERROR) == "This is a required field."
 
-    @allure.step("Create an account with invalid email: {email}")
+    @allure.title("Create an account with invalid email: {email}")
     @pytest.mark.parametrize("email", ["123.com", "@mail.com", "123mail.com"])
     def test_create_account_empty_email_name_field(self, browser, email):
         page = CreateAccount(browser)
@@ -70,9 +70,9 @@ class TestCreateAccount:
                             confirmation_password="123456789")
         with allure.step("Error: This is a required field"):
             assert page.get_text(CreateAccountLocators.EMAIL_ERROR) == ("Please enter a valid email address"
-                                                                             " (Ex: johndoe@domain.com).")
+                                                                        " (Ex: johndoe@domain.com).")
 
-    @allure.step("Create an account with empty password field")
+    @allure.title("Create an account with empty password field")
     def test_create_account_empty_password_name_field(self, browser):
         page = CreateAccount(browser)
         page.open(URL.CREATE_ACCOUNT)
@@ -84,7 +84,7 @@ class TestCreateAccount:
         with allure.step("Error: This is a required field"):
             assert page.get_text(CreateAccountLocators.PASSWORD_ERROR) == "This is a required field."
 
-    @allure.step("Create an account with empty confirmation password field")
+    @allure.title("Create an account with empty confirmation password field")
     def test_create_account_empty_confirmation_password_name_field(self, browser):
         page = CreateAccount(browser)
         page.open(URL.CREATE_ACCOUNT)
@@ -122,7 +122,7 @@ class TestCreateAccount:
         with allure.step("Error: Please enter the same value again"):
             assert page.get_text(CreateAccountLocators.CONFIRM_PASSWORD_ERROR) == "Please enter the same value again."
 
-    @allure.step("Create an account with weak password")
+    @allure.title("Create an account with weak password")
     def test_create_account_empty_confirmation_password_name_field(self, browser):
         page = CreateAccount(browser)
         page.open(URL.CREATE_ACCOUNT)

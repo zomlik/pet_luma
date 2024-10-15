@@ -5,23 +5,19 @@ from locators.sing_in_locators import SingInLocators
 
 
 class SingIn(BasePage):
-    @allure.step("Нажатие на кнопку Create an Account")
+    def sing_in(self, email: str, password: str):
+        with allure.step("Fill email field"):
+            self.is_visible(SingInLocators.EMAIL).send_keys(email)
+        with allure.step("Fill password field"):
+            self.is_visible(SingInLocators.PASSWORD).send_keys(password)
+        with allure.step("Click on Sing In button"):
+            self.is_clickable(SingInLocators.SING_IN_BUTTON).click()
+
+    @allure.step("Click on Create an Account button")
     def click_create_account_button(self):
         return self.is_clickable(SingInLocators.CREATE_ACCOUNT_BUTTON).click()
 
-    @allure.title("Поле Email")
-    def send_email(self, email: str):
-        return self.is_visible(SingInLocators.EMAIL).send_keys(email)
-
-    @allure.title("Поле Password")
-    def send_password(self, password: str):
-        return self.is_visible(SingInLocators.PASSWORD).send_keys(password)
-
-    @allure.step("Нажатие на кнопку Sing In")
-    def click_sing_in_button(self):
-        return self.is_clickable(SingInLocators.SING_IN_BUTTON).click()
-
-    @allure.step("Нажатие на ссылку Forgot My Password")
+    @allure.step("Click on Forgot My Password button")
     def click_forgot_password_link(self):
         return self.is_clickable(SingInLocators.FORGOT_PASSWORD_LINK).click()
 

@@ -1,5 +1,8 @@
 name: Run tests and publish allure report
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,7 +27,17 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests
+        env:
+          EMAIL: ${{secrets.EMAIL}}
+          PASSWORD: ${{ secrets.PASSWORD}}
         run: pytest --ci=true --alluredir allure-results
+
+      - name: Add allure env
+        working-directory: allure-results
+        run: |
+          echo GIT_COMMIT_ID=${{ github.sha }} >> environment.properties
+          echo GIT_COMMIT_MESSAGE=$(git show -s --format=%s HEAD) >> environment.properties
+          echo CHROME_VERSION=$(google-chrome --product-version) >> environment.properties
 
       - name: Load test report history
         uses: actions/checkout@v3

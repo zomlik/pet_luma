@@ -5,50 +5,49 @@ from locators.item_locators import ItemLocators
 from pages.search_page import Search
 
 
-@allure.suite("Поиск")
+@allure.suite("Search")
 class TestSearch:
-    @allure.title("PL-7 Поиск по 2 символам")
+    @allure.title("Search by 2 characters")
     def test_search_for_2_simbols(self, browser):
         page = Search(browser)
-        page.open(URL.BASE_URL)
+        page.open(URL.MAIN_MAIGE)
         page.send_search_field("ac")
         page.send_enter()
-        with allure.step("Проверка, что минемальная длинна 3 символа"):
+        with allure.step("Error: Minimum Search query"):
             assert "Minimum Search query length is 3" in page.search_results_message()
 
-    @allure.title("PL-8 Поиск по 3 символам")
+    @allure.title("Search by 3 characters")
     def test_search_for_3_simbols(self, browser):
         page = Search(browser)
-        page.open(URL.BASE_URL)
+        page.open(URL.MAIN_MAIGE)
         page.send_search_field("jac")
         page.send_enter()
-        with allure.step("На странице с результатами поиска присутствуют товары"):
+        with allure.step("There are products on the search results page"):
             assert len(ItemLocators.MINI_ITEMS) > 0
 
-    @allure.title("PL-10 Поиск несуществующего товара")
+    @allure.title("Search for a non-existent product")
     def test_search_for_non_exist_product(self, browser):
         page = Search(browser)
-        page.open(URL.BASE_URL)
+        page.open(URL.MAIN_MAIGE)
         page.send_search_field("mom")
         page.send_enter()
-        with allure.step("Отображается сообщение 'Your search returned no results'"):
+        with allure.step("Error message: 'Your search returned no results'"):
             assert "Your search returned no results." in page.search_results_message()
 
-    @allure.title("PL-11 Поиск товара по полному названию")
+    @allure.title("Product search by full name")
     def test_search_for_full_product_name(self, browser):
         page = Search(browser)
-        page.open(URL.BASE_URL)
+        page.open(URL.MAIN_MAIGE)
         page.send_search_field("Ina Compression Short")
         page.send_enter()
-        with allure.step("Товар присутствует в результатах поиска"):
-            assert page.find_elem_by_name_in_results(name="Ina Compression Short"), ("Название товара в списке не "
-                                                                                     "найдено")
+        with allure.step("Product is found"):
+            assert page.find_elem_by_name_in_results(name="Ina Compression Short")
 
-    @allure.title("PL-13 Поиск товара по частичному совпадению")
+    @allure.title("Product search by partial coincidence")
     def test_search_for_partial_coincidence_name(self, browser):
         page = Search(browser)
-        page.open(URL.BASE_URL)
+        page.open(URL.MAIN_MAIGE)
         page.send_search_field("jacket")
         page.send_enter()
-        with allure.step("Товар присутствует в результатах поиска"):
-            assert page.find_elem_by_name_in_results(name="Jacket"), "Название товара в списке не найдено"
+        with allure.step("Product is found"):
+            assert page.find_elem_by_name_in_results(name="Jacket")

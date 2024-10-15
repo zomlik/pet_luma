@@ -36,5 +36,3 @@ jobs:
       - name: Search tests
         if: "github.event.inputs.deployment_target == 'search'"
         run: pytest tests/search.py
-
-

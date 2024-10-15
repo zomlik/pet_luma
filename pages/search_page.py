@@ -7,10 +7,7 @@ from locators.search_results_locatators import SearchResultsLocators
 
 
 class Search(BasePage):
-    def __init__(self, browser):
-        super().__init__(browser)
-
-    @allure.step("Поиск")
+    @allure.step("Fill search box")
     def send_search_field(self, keys: str):
         return self.is_visible(MainPageLocators.SEARCH_BOX).send_keys(keys)
 
