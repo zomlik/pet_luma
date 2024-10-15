@@ -1,8 +1,8 @@
 import allure
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait as wait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 
 class BasePage:
@@ -31,30 +31,30 @@ class BasePage:
     def __init__(self, browser):
         self.browser = browser
 
-    @allure.step("Открытие cтраницы")
+    @allure.step("Open page")
     def open(self, url: str) -> None:
         return self.browser.get(url)
 
     def current_url(self) -> None:
         return self.browser.current_url
 
-    def get_text(self, locator: tuple) -> str:
+    def get_text(self, locator: tuple[str, str]) -> str:
         return self.is_visible(locator).text
 
-    def len(self, locator: tuple) -> int:
+    def len(self, locator: tuple[str, str]) -> int:
         return len(self.all_elems_is_visibles(locator))
 
-    def is_visible(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
-        return wait(self.browser, timeout).until(EC.visibility_of_element_located(locator),
+    def is_visible(self, locator: tuple[str, str], timeout: int = TIMEOUT) -> WebElement:
+        return Wait(self.browser, timeout).until(ec.visibility_of_element_located(locator),
                                                  message=f"Can't find element by {locator}")
 
-    def is_clickable(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
-        return wait(self.browser, timeout).until(EC.element_to_be_clickable(locator),
+    def is_clickable(self, locator: tuple[str, str], timeout: int = TIMEOUT) -> WebElement:
+        return Wait(self.browser, timeout).until(ec.element_to_be_clickable(locator),
                                                  message=f"Can't find element by {locator}")
 
-    def all_elems_is_visibles(self, locator: tuple,
+    def all_elems_is_visibles(self, locator: tuple[str, str],
                               timeout: int = TIMEOUT) -> list[WebElement]:
-        return wait(self.browser, timeout).until(EC.visibility_of_all_elements_located(locator),
+        return Wait(self.browser, timeout).until(ec.visibility_of_all_elements_located(locator),
                                                  message=f"Can't find elements by {locator}")
 
     def find(self, locator: tuple) -> WebElement:
