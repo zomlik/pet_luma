@@ -12,7 +12,7 @@ class TestSingIn(FakeData):
     def test_sing_in(self, browser):
         page = SingIn(browser)
         page.open(URL.LOGIN_PAGE)
-        page.sing_in(email=os.getenv("EMAIL"), password=os.getenv("PASSWORD"))
+        page.sing_in(email=os.environ["EMAIL"], password=os.environ["PASSWORD"])
         with allure.step("Successful authorization message"):
             assert "Welcome" in page.welcome_message()
 
